@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import axiosMock from 'axios'
@@ -71,18 +72,6 @@ const pokemonList = {
   sprites: { front_default: 'URL' }
 }
 
-const previous = {
-  url: 'https://pokeapi.co/api/v2/pokemon/132/',
-  name: 'ditto',
-  id: 132
-}
-
-const next = {
-  url: 'https://pokeapi.co/api/v2/pokemon/134/',
-  name: 'vaporeon',
-  id: 134
-}
-
 describe('<PokemonPage />', () => {
   it('should render abilities', async () => {
     axiosMock.get.mockResolvedValueOnce({ data: pokemonList })
@@ -141,5 +130,5 @@ describe('<PokemonPage />', () => {
 
     expect(screen.queryByText('Previous')).toBeNull()
     expect(screen.queryByText('Next')).toBeNull()
-  })  
+  })
 })
