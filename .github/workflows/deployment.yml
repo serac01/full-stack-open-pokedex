@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  deployment_job:
+  setup_job:
+    name: Setup (install dependecies and lint)
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -17,13 +18,22 @@ jobs:
         run: npm install
       - name: lint
         run: npm run eslint
+
+  deploy_job:
+    name: Deploy
+    runs-on: ubuntu-20.04
+    steps:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
+  tag_release_job:
+    name: Tag
+    runs-on: ubuntu-20.04
+    steps:
       - name: Bump version and push tag
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         uses: anothrNick/github-tag-action@1.64.0 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-          RELEASE_BRANCHES: master
