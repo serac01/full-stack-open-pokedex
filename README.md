@@ -1,15 +1,5 @@
-# Full Stack open CI/CD
+# Full Stack Open Course - Part 11
 
-This repository is used for the CI/CD module of the Full stack open course
+This repository contains my solutions for exercises 11.1 to 11.8 from the Full Stack Open Course.
 
-Fork the repository to complete course exercises
-
-## Commands
-
-Start by running `npm install` inside the project folder
-
-`npm start` to run the webpack dev server
-`npm test` to run tests
-`npm run eslint` to run eslint
-`npm run build` to make a production build
-`npm run start-prod` to run your production build
+For the other exercises, check out the dedicated repository: [Phonebook CI/CD](https://github.com/serac01/phonebook-ci-cd).
